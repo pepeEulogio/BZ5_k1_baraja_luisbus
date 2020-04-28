@@ -17,13 +17,14 @@ def crea_baraja():
 def mezclar(b):
     br = []
     i = 0
-    while i < 40:
-        n = random.randint(0,39)
+   
+    while len(br) != len(b):
+        n = random.randint(0,len(b)-1)
         while b[n] in br:
-            n = random.randint(0,39)
+            n = random.randint(0,len(b)-1)
         br.append(b[n])
-        i += 1
-    b = br
+       
+    b[:] = br
     return br
 
 def repartir(b, players, cards):
@@ -37,3 +38,10 @@ def repartir(b, players, cards):
             res[ij].append(carta)
 
     return res
+
+def invertir(b):
+    for i in range(len(b//2)):
+        aux = b[i]
+        b[i] = b[-1-i]
+        b[-1-1] = aux
+        
